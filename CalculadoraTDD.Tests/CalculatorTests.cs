@@ -2,9 +2,7 @@
 
 namespace CalculadoraTDD.Tests
 {
-    using System;
     using Domain;
-    using Moq;
 
     [TestClass]
     public class CalculatorTests
@@ -43,6 +41,20 @@ namespace CalculadoraTDD.Tests
         {
             var result = this.calculator.Substract(3, 5);
             Assert.AreEqual(-2, result);
+        }
+
+        [TestMethod]
+        public void Multiply()
+        {
+            var result = this.calculator.Multiply(3, 2);
+            Assert.AreEqual(6, result);
+        }
+
+        [TestMethod]
+        public void Division()
+        {
+            var result = this.calculator.Divide(6, 2);
+            Assert.AreEqual(3, result);
         }
     }
 }

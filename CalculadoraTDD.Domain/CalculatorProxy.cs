@@ -1,13 +1,11 @@
 ﻿namespace CalculadoraTDD.Domain
 {
-    using System;
-
-    public class CalcProxy
+    public class CalculatorProxy : ICalculatorProxy
     {
         private readonly ILimitsValidator validator;
 
         public delegate int SingleBinaryOperation(int n1, int n2);
-        public CalcProxy(ILimitsValidator validator)
+        public CalculatorProxy(ILimitsValidator validator)
         {
             this.validator = validator;
         }
@@ -19,5 +17,10 @@
             this.validator.ValidateResult(result);
             return result;
         }
+    }
+
+    public interface ICalculatorProxy
+    {
+        int BinaryOperation(CalculatorProxy.SingleBinaryOperation binaryOperation, int n1, int n2);
     }
 }

@@ -19,7 +19,7 @@
             
             calculatorMock.Setup(x => x.Add(n1,n2)).Returns(result);            
 
-            var calcProxy = new CalcProxy(validatorMock.Object);
+            var calcProxy = new CalculatorProxy(validatorMock.Object);
             calcProxy.BinaryOperation(calculatorMock.Object.Add, n1, n2);
 
             validatorMock.Verify(x => x.ValidateArgs(n1, n2));
@@ -31,7 +31,7 @@
         {
             var validator = new LimitsValidator(-100, 100);
             var calculator = new Calculator();
-            var proxy = new CalcProxy(validator);
+            var proxy = new CalculatorProxy(validator);
 
             var result = proxy.BinaryOperation(calculator.Substract, 5, 3);
             Assert.AreEqual(2, result);

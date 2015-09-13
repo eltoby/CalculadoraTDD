@@ -39,12 +39,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CalcProxy.cs" />
+    <Compile Include="AddOperator.cs" />
+    <Compile Include="CalculatorProxy.cs" />
     <Compile Include="Calculator.cs" />
+    <Compile Include="DivideOperator.cs" />
+    <Compile Include="ExpressionFixer.cs" />
+    <Compile Include="ExpressionValidator.cs" />
     <Compile Include="ICalculator.cs" />
+    <Compile Include="IExpressionFixer.cs" />
     <Compile Include="ILimitsValidator.cs" />
+    <Compile Include="IMathLexer.cs" />
+    <Compile Include="IOperatorFactory.cs" />
     <Compile Include="LimitsValidator.cs" />
+    <Compile Include="MathLexer.cs" />
+    <Compile Include="MathOperator.cs" />
+    <Compile Include="MathParser.cs" />
+    <Compile Include="MathToken.cs" />
+    <Compile Include="MultiplyOperator.cs" />
+    <Compile Include="OperatorFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SubstractOperator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
