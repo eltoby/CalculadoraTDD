@@ -16,6 +16,5 @@
             var endsWithOperatorRegex = new Regex(@"(\s+)[\+|\-|\/|\*](\s*)$");
             return startsWithOperatorRegex.IsMatch(exp) || endsWithOperatorRegex.IsMatch(exp);
         }
-
     }
 }
