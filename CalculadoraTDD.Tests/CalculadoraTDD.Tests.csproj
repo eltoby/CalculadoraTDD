@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="CalcProxyTests.cs" />
     <Compile Include="CalculatorTests.cs" />
+    <Compile Include="ExpressionFixerTests.cs" />
     <Compile Include="ExpressionValidatorTests.cs" />
     <Compile Include="MathParserTests.cs" />
     <Compile Include="MathLexerTests.cs" />

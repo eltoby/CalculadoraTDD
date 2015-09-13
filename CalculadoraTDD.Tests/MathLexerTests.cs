@@ -1,6 +1,8 @@
 ﻿namespace CalculadoraTDD.Tests
 {
     using System;
+    using System.Collections;
+    using System.Collections.Generic;
     using System.Linq;
     using Domain;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -14,7 +16,7 @@
         public void SetUp()
         {
             var validator = new ExpressionValidator();
-            var expressionFixer = new ExpressionFixer();
+            var expressionFixer = new ExpressionFixer(validator);
             this.lexer = new MathLexer(validator, expressionFixer);
         }
 
@@ -73,18 +75,34 @@
         }
 
         [TestMethod]
+        public void GetExpressionsWithNestedParenthesis()
+        {
+            var expressions = lexer.GetExpressions("((2) + 2)");
+            this.FailIfOtherSubexpressionThan(expressions, "2", "+");
+        }
+
+        [TestMethod]
         public void GetNestedExpressions()
         {
             const string expression = "((2 + 1) + 2)";
             var expressions = this.lexer.GetExpressions(expression);
             Assert.AreEqual(3, expressions.Count);
 
-            foreach (var exp in expressions)
-            {
-                if (exp != "2 + 1" && exp != "+" && exp != "2")
-                    Assert.Fail("Wrong expression split");
-            }
+            this.FailIfOtherSubexpressionThan(expressions, "2 + 1", "+", "2");
+        }
 
+        [TestMethod]
+        public void ExpressionWithParenthesisAtTheEnd()
+        {
+            var expressions = this.lexer.GetExpressions("2 + (3 * 1)");
+            this.FailIfOtherSubexpressionThan(expressions, "3 * 1", "+", "2");
+        }
+        private void FailIfOtherSubexpressionThan(IEnumerable<string> expressions, params string[] validExpressions)
+        {
+            var failedExpression = expressions.FirstOrDefault(x => !validExpressions.Contains(x));
+                
+            if (failedExpression != null)
+                Assert.Fail("Wrong expression split: {0}", failedExpression);
         }
     }
 }

@@ -13,7 +13,7 @@
         public void SetUp()
         {
             var expressionValidator = new ExpressionValidator();
-            var expressionFixer = new ExpressionFixer();
+            var expressionFixer = new ExpressionFixer(expressionValidator);
             this.lexer = new MathLexer(expressionValidator, expressionFixer);
             var limitsValidator = new LimitsValidator(-100, 100);
             var proxy = new CalculatorProxy(limitsValidator);

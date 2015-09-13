@@ -7,27 +7,47 @@
 
     public class ExpressionFixer : IExpressionFixer
     {
+        private readonly IExpressionValidator expressionValidator;
+
+        public ExpressionFixer(IExpressionValidator expressionValidator)
+        {
+            this.expressionValidator = expressionValidator;
+        }
+
         public IList<string> FixExpressions(IList<string> expressions)
         {
-            expressions = expressions.Where(expression => !string.IsNullOrEmpty(expression)).ToList();
+            expressions = RemoveEmptyExpressions(expressions);
             
-            var regex = new Regex(@"^(\s*)[\+|\-|\/|\*](\s+)");
-            var endOfList = false;
-
-            while (!endOfList)
+            var listHasChanged = true;
+            while (listHasChanged)
             {
-                endOfList = true;
+                listHasChanged = false;
                 for (var i = 0; i < expressions.Count; i++)
-                    if (regex.IsMatch(expressions[i]))
+                {
+                    var exp = expressions[i];
+                    if (!this.expressionValidator.IsNumberAndOperator(exp)) continue;
+                    var splitted = RemoveEmptyExpressions(SplitByOperator(exp));
+                    expressions.RemoveAt(i);
+                    
+                    foreach (var newExp in splitted)
                     {
-                        var exp = expressions[i];
-                        exp = exp.Trim();
-                        var nexExps = exp.Split(new[] { ' ', '\t' }, 2, StringSplitOptions.RemoveEmptyEntries);
-                        expressions[i] = nexExps[0];
-                        expressions.Insert(i + 1, nexExps[1]);
-                        endOfList = false;
+                        expressions.Add(newExp.Trim());
+                        i++;
                     }
+                    listHasChanged = true;
+                }
             }
+            return expressions;
+        }
+
+        private static List<string> RemoveEmptyExpressions(IEnumerable<string> expressions)
+        {
+            return expressions.Where(expression => !string.IsNullOrEmpty(expression.Trim())).ToList();
+        }
+
+        private static IEnumerable<string> SplitByOperator(string exp)
+        {
+            var expressions = Regex.Split(exp, @"([\+|\-|\/|\*])");
             return expressions;
         }
     }

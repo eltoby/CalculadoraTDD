@@ -47,6 +47,7 @@
     <Compile Include="ExpressionValidator.cs" />
     <Compile Include="ICalculator.cs" />
     <Compile Include="IExpressionFixer.cs" />
+    <Compile Include="IExpressionValidator.cs" />
     <Compile Include="ILimitsValidator.cs" />
     <Compile Include="IMathLexer.cs" />
     <Compile Include="IOperatorFactory.cs" />
