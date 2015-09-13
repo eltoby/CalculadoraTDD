@@ -12,7 +12,7 @@
         [TestInitialize]
         public void SetUp()
         {
-            var expressionValidator = new ExpressionValidator();
+            var expressionValidator = new MathRegex();
             var expressionFixer = new ExpressionFixer(expressionValidator);
             this.lexer = new MathLexer(expressionValidator, expressionFixer);
             var limitsValidator = new LimitsValidator(-100, 100);

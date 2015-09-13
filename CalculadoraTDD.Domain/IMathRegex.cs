@@ -1,6 +1,6 @@
 ﻿namespace CalculadoraTDD.Domain
 {
-    public interface IExpressionValidator
+    public interface IMathRegex
     {
         bool IsValidExpression(string expression);
         bool IsNumberAndOperator(string expression);

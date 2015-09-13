@@ -7,9 +7,9 @@
 
     public class ExpressionFixer : IExpressionFixer
     {
-        private readonly IExpressionValidator expressionValidator;
+        private readonly IMathRegex expressionValidator;
 
-        public ExpressionFixer(IExpressionValidator expressionValidator)
+        public ExpressionFixer(IMathRegex expressionValidator)
         {
             this.expressionValidator = expressionValidator;
         }

@@ -15,7 +15,7 @@
         [TestInitialize]
         public void SetUp()
         {
-            var validator = new ExpressionValidator();
+            var validator = new MathRegex();
             var expressionFixer = new ExpressionFixer(validator);
             this.lexer = new MathLexer(validator, expressionFixer);
         }

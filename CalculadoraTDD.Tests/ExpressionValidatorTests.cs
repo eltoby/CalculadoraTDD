@@ -5,12 +5,12 @@
 
     public class ExpressionValidatorTests
     {
-        private ExpressionValidator expressionValidator;
+        private MathRegex expressionValidator;
 
         [TestInitialize]
         public void SetUp()
         {
-            this.expressionValidator = new ExpressionValidator();
+            this.expressionValidator = new MathRegex();
         }
 
         [TestMethod]

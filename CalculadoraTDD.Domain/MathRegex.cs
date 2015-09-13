@@ -2,7 +2,7 @@
 {
     using System.Text.RegularExpressions;
 
-    public class ExpressionValidator : IExpressionValidator
+    public class MathRegex : IMathRegex
     {
         public bool IsValidExpression(string expression)
         {

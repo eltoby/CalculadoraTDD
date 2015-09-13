@@ -44,10 +44,10 @@
     <Compile Include="Calculator.cs" />
     <Compile Include="DivideOperator.cs" />
     <Compile Include="ExpressionFixer.cs" />
-    <Compile Include="ExpressionValidator.cs" />
+    <Compile Include="MathRegex.cs" />
     <Compile Include="ICalculator.cs" />
     <Compile Include="IExpressionFixer.cs" />
-    <Compile Include="IExpressionValidator.cs" />
+    <Compile Include="IMathRegex.cs" />
     <Compile Include="ILimitsValidator.cs" />
     <Compile Include="IMathLexer.cs" />
     <Compile Include="IOperatorFactory.cs" />
